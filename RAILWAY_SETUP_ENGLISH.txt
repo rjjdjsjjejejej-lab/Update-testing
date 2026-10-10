@@ -1,0 +1,10 @@
+PYTHON BOT HOSTING — RAILWAY SETUP (ENGLISH)
+
+1. Upload these flat files directly to the GitHub repository root: main.py, requirements.txt, railway.toml, Procfile, .python-version, .env.example, .gitignore. Do not upload __pycache__.
+2. Railway: connect the GitHub repository and deploy. Start command: python main.py.
+3. Railway Variables: BOT_TOKEN (new token from BotFather), OWNER_ID (numeric Telegram user ID), ADMIN_ID (numeric Telegram user ID), OWNER_CONTACT_URL (https://t.me/your_admin_username), UPDATE_CHANNEL_URL (https://t.me/your_channel), DATA_DIR=/data, PROJECTS_DIR=/data/projects, DATABASE_PATH=/data/projects.db.
+4. Add a Railway Volume and mount it at /data so SQLite and uploaded projects persist across deployments.
+5. The main menu is English-only. New project uploads wait for Admin Approve/Reject. Admin Premium allocation requires at least 10 slots.
+6. Security: uploaded scripts are arbitrary code. Approve only code you trust. Resource limits are best-effort and are not a full sandbox.
+7. Automatic error handling records technical details in Railway logs and shows a safe message to users. It cannot reliably rewrite or fix arbitrary uploaded code automatically.
+8. Never commit real bot tokens. If a token was exposed in chat/source, revoke it with BotFather and use a new token in Railway Variables.
