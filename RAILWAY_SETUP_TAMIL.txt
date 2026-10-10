@@ -1,0 +1,26 @@
+RAILWAY DEPLOYMENT SETUP (Tamil)
+
+1. GitHub repository root-ல் இந்த files அனைத்தையும் வைக்கவும்:
+   main.py, requirements.txt, railway.toml, Procfile, .python-version, .env.example
+
+2. Railway → New Project → Deploy from GitHub Repo → இந்த repository-ஐ தேர்வு செய்யவும்.
+
+3. Railway → Service → Variables பகுதியில் கீழே உள்ள variables சேர்க்கவும்:
+   BOT_TOKEN = BotFather-ல் புதிதாக உருவாக்கிய bot token
+   OWNER_ID = உங்கள் Telegram numeric user ID
+   ADMIN_ID = உங்கள் Telegram numeric user ID
+   DATA_DIR = /data
+   PROJECTS_DIR = /data/projects
+   DATABASE_PATH = /data/projects.db
+   (OWNER_CONTACT_URL மற்றும் UPDATE_CHANNEL_URL optional.)
+
+4. Persistent storage தேவை: Railway Service → Volumes → Add Volume; mount path /data என அமைக்கவும்.
+   Volume இல்லையெனில் redeploy/restart போது database மற்றும் uploaded project files இழக்கப்படலாம்.
+
+5. Settings → Deploy-ல் Start Command-ஐ காலியாக விடலாம் (railway.toml பயன்படுத்தும்), அல்லது `python main.py` என அமைக்கவும்.
+
+6. Deployments → Deploy / Redeploy. Logs-ல் dependency install முடிந்து bot polling தொடங்குகிறதா பார்க்கவும்.
+
+7. `BOT_TOKEN`-ஐ code-ல் எழுத வேண்டாம். பழைய token source-ல் வெளிப்பட்டதால் BotFather மூலம் revoke செய்து புதிய token எடுத்து Railway Variables-ல் மட்டும் வைக்கவும்.
+
+குறிப்பு: இந்த bot Python 3.11 + aiogram v3 + aiosqlite-க்கு அமைக்கப்பட்டுள்ளது.
